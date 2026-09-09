@@ -26,3 +26,13 @@ Execute na raiz do repositório:
 O índice único dos HMACs impede duplicações. Um gatilho incrementa o total apenas quando uma identificação nova é inserida; a inserção e a leitura usam uma transação D1. A tabela de totais evita percorrer todos os visitantes em cada acesso. O serviço usa o IP da Cloudflare, nunca um parâmetro informado pelo navegador.
 
 Documentação: [D1 e transações](https://developers.cloudflare.com/d1/worker-api/d1-database/) e [cabeçalhos da Cloudflare](https://developers.cloudflare.com/fundamentals/reference/http-headers/).
+
+## Ranking global
+
+A rota /ranking usa o mesmo Worker e banco, com uma tabela separada scores. Antes de atualizar o Worker, execute na raiz:
+
+`npx --yes wrangler@4 d1 execute forca-brasil-visitors --remote --file counter/ranking.sql --config counter/wrangler.jsonc`
+
+Depois execute o deploy habitual. A migração é aditiva e não altera as visitas existentes. GET /ranking retorna entries com até 10 resultados. POST /ranking recebe JSON com id (UUID v4), name e rounds (word e guesses), limitado a 16 KiB. O resultado numérico é calculado no servidor. A chave única evita duplicação no reenvio. Em empate de pontos e acertos, o registro mais antigo vem primeiro e o ID estabiliza a ordenação.
+
+Os resultados ficam em scores; somente os 10 melhores são exibidos. Não há cadastro, soma por apelido nem importação automática do ranking local antigo. O catálogo words.json deve acompanhar o catálogo do jogo; os testes verificam a equivalência. A validação de rodadas é básica e não substitui um jogo integralmente controlado pelo servidor contra automação.

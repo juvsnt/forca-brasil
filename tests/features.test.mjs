@@ -14,7 +14,7 @@ test('dicas: cobertura, uma leitura por rodada, bloqueio durante modal e cinco n
     showModal(){ this.open = true; }, close(){ this.open = false; this.listeners.close?.(); }
   });
   const sandbox = {
-    assert, document: {
+    assert, crypto, GlobalRanking: { games: [], enqueue(game){this.games.push(game)},refresh(){} }, document: {
       getElementById(id){ if(!elements.has(id)) elements.set(id, element()); return elements.get(id); },
       querySelectorAll(){ return []; }, createElement: element, addEventListener(){}
     }, localStorage: {
@@ -47,7 +47,7 @@ test('dicas: cobertura, uma leitura por rodada, bloqueio durante modal e cinco n
       newWord();
     }
     assert.equal(state.wins,25);
-    assert.equal(JSON.parse(localStorage.getItem('forcaBrasilRanking'))[0].wins,25);
+    assert.equal(GlobalRanking.games.length,1); assert.equal(GlobalRanking.games[0].rounds.length,25); save(); assert.equal(GlobalRanking.games.length,1);
   `, sandbox);
 });
 

@@ -1,4 +1,5 @@
 import { isIP } from 'node:net';
+import { ranking } from './ranking.mjs';
 
 export function normalizeIP(value) {
   if (!value || !isIP(value)) return null;
@@ -20,16 +21,19 @@ export default {
     const headers = {
       'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN,
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
       'Vary': 'Origin',
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff'
     };
     const reply = (body, status = 200) => Response.json(body, { status, headers });
-    if (new URL(request.url).pathname !== '/visits') return reply({ error: 'Not found' }, 404);
+    const path = new URL(request.url).pathname;
+    if (!['/visits', '/ranking'].includes(path)) return reply({ error: 'Not found' }, 404);
     if (request.headers.get('Origin') !== env.ALLOWED_ORIGIN) return reply({ error: 'Forbidden' }, 403);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers });
     if (!['GET', 'POST'].includes(request.method)) return reply({ error: 'Method not allowed' }, 405);
     try {
+      if (path === '/ranking') return await ranking(request, env, reply);
       if (request.method === 'GET') {
         const result = await env.DB.prepare('SELECT count FROM totals WHERE id = 1').first();
         return reply({ count: result.count });
