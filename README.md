@@ -62,6 +62,10 @@ Para manutenção do serviço, veja [counter/README.md](counter/README.md).
 
 Com Node.js 24 ou mais recente, execute `node --test tests/*.test.mjs`. Os testes cobrem as dicas nos cinco níveis, o bloqueio após fechar, IPs repetidos e equivalentes, gravação atômica e estados da interface do contador.
 
+## Controle de versão
+
+A versão exibida no site fica em `version.js` e segue o formato `vMAJOR.MINOR.PATCH`: o primeiro número indica mudanças estruturais, o segundo indica novos recursos e o terceiro indica correções ou ajustes pequenos. Esta publicação é a **v1.1.0**, referente ao banco ampliado de palavras e à prevenção de repetições. Antes de cada commit, a versão deve ser atualizada e informada na mensagem de trabalho.
+
 ## Autoria
 
 Desenvolvido pelo **Prof. JNeto**.

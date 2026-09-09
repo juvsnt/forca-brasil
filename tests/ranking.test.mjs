@@ -8,8 +8,8 @@ import { validateGame } from '../counter/ranking.mjs';
 import words from '../counter/words.json' with { type: 'json' };
 
 function game(wins=0) {
-  const rounds = words.flat().slice(0,wins).map(word => ({word,guesses:[...new Set(word.replaceAll(' ',''))]}));
-  if(wins<25) { const word=words.flat()[wins]; rounds.push({word,guesses:[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].filter(l=>!word.includes(l)).slice(0,6)}); }
+  const all = words.flatMap((bank,level) => bank.slice(0,5).map(word => ({word,level}))); const rounds = all.slice(0,wins).map(({word}) => ({word,guesses:[...new Set(word.replaceAll(' ',''))]}));
+  if(wins<25) { const {word}=all[wins]; rounds.push({word,guesses:[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].filter(l=>!word.includes(l)).slice(0,6)}); }
   return {id:crypto.randomUUID(),name:'Jogador teste',rounds};
 }
 function database() {
@@ -28,8 +28,9 @@ function database() {
 }
 test('valida todas as fases, recalcula pontos e rejeita rodadas impossíveis',()=>{
   const html=fs.readFileSync('index.html','utf8');
-  const declaration=html.match(/const levels=([\s\S]*?);/)[0];
-  assert.equal(JSON.stringify(vm.runInNewContext(declaration+'levels').map(l=>l.words.map(w=>w[0].toUpperCase()))),JSON.stringify(words));
+  const bank=fs.readFileSync('word-bank.js','utf8');
+  const declaration='const levels=wordBanks;';
+  assert.equal(JSON.stringify(vm.runInNewContext(bank+';'+declaration+'levels').map(l=>l.words.map(w=>w[0].toUpperCase()))),JSON.stringify(words));
   assert.equal(validateGame(game(25)).score,9000);
   assert.equal(validateGame(game(5)).level,2);
   const forged=game(1);forged.score=999999;assert.equal(validateGame(forged).score,160);
