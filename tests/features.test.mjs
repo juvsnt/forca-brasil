@@ -23,7 +23,7 @@ test('dicas: cobertura, uma leitura por rodada, bloqueio durante modal e cinco n
   };
   vm.createContext(sandbox);
   const html = fs.readFileSync('index.html', 'utf8');
-  vm.runInContext(fs.readFileSync('word-bank.js', 'utf8'), sandbox); vm.runInContext(fs.readFileSync('version.js', 'utf8'), sandbox); vm.runInContext(fs.readFileSync('hints.js', 'utf8'), sandbox);
+  vm.runInContext(fs.readFileSync('word-bank.js', 'utf8'), sandbox); vm.runInContext(fs.readFileSync('hint-validator.js', 'utf8'), sandbox); vm.runInContext(fs.readFileSync('version.js', 'utf8'), sandbox); vm.runInContext(fs.readFileSync('hints.js', 'utf8'), sandbox);
   vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1], sandbox);
   vm.runInContext(`
     audioOn=false; start('Teste');
