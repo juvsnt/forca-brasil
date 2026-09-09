@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS visitors (
+  ip_hash TEXT PRIMARY KEY NOT NULL
+);
+CREATE TABLE IF NOT EXISTS totals (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  count INTEGER NOT NULL DEFAULT 0
+);
+INSERT OR IGNORE INTO totals (id, count) VALUES (1, 0);
+CREATE TRIGGER IF NOT EXISTS count_new_visitor
+AFTER INSERT ON visitors
+BEGIN
+  UPDATE totals SET count = count + 1 WHERE id = 1;
+END;

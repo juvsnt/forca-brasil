@@ -1,0 +1,14 @@
+{
+  "name": "forca-brasil-counter",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": { "ALLOWED_ORIGIN": "https://juvsnt.github.io" },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "forca-brasil-visitors",
+    "database_id": "SUBSTITUIR_PELO_ID_DO_D1"
+  }]
+}
