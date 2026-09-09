@@ -4,34 +4,83 @@
     "SAMBA",
     "PRAIA",
     "CAFE",
-    "BRASIL"
+    "BRASIL",
+    "CINEMA",
+    "BICICLETA",
+    "MUSICA",
+    "ESCOLA",
+    "AMIZADE",
+    "FAMILIA",
+    "VIAGEM",
+    "SORVETE",
+    "JARDIM"
   ],
   [
     "CHURRASCO",
     "NOVELA",
     "FAROFA",
     "PIPOCA",
-    "FESTA JUNINA"
+    "FESTA JUNINA",
+    "PADARIA",
+    "MERCADO",
+    "HAMBURGUER",
+    "COXINHA",
+    "RECREIO",
+    "DOMINGO",
+    "CALCADA",
+    "REDE",
+    "BATE PAPO",
+    "FEIRA"
   ],
   [
     "CAPOEIRA",
     "CARNAVAL",
     "BRIGADEIRO",
     "SERTANEJO",
-    "FEIJOADA"
+    "FEIJOADA",
+    "FREVO",
+    "MARACATU",
+    "BOSSA NOVA",
+    "PAMONHA",
+    "ACARAJE",
+    "QUADRILHA",
+    "ARTESANATO",
+    "RODA DE SAMBA",
+    "FOLIA",
+    "RAPADURA"
   ],
   [
     "JABUTICABA",
     "PANTANAL",
     "LITERATURA DE CORDEL",
     "PAO DE QUEIJO",
-    "BUMBA MEU BOI"
+    "BUMBA MEU BOI",
+    "AMAZONIA",
+    "CERRADO",
+    "CAATINGA",
+    "IGUACU",
+    "SACI PERERE",
+    "VITORIA REGIA",
+    "MANDIOCA",
+    "TUCUPI",
+    "CANGACO",
+    "CARIMBO"
   ],
   [
     "PARALELEPIPEDO",
     "ARARA AZUL",
     "LENCOIS MARANHENSES",
     "OURO PRETO",
-    "GUIMARAES ROSA"
+    "GUIMARAES ROSA",
+    "CHAPADA DIAMANTINA",
+    "MATA ATLANTICA",
+    "MICO LEAO DOURADO",
+    "CERRADO BRASILEIRO",
+    "ALEIJADINHO",
+    "OSWALD DE ANDRADE",
+    "MACHADO DE ASSIS",
+    "RIO AMAZONAS",
+    "PICO DA NEBLINA",
+    "TIRADENTES"
   ]
 ]
