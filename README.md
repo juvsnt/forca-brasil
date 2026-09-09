@@ -44,7 +44,7 @@ A validação impede números arbitrários e sequências impossíveis, mas não 
 
 ## Dicas
 
-As 25 palavras possuem pistas próprias em `hints.js`. O botão **Quero uma dica** abre uma janela sem limite de tempo de leitura. Ao fechar, inclusive com Escape, a dica é apagada da janela e não pode ser reaberta naquela rodada. A próxima palavra disponibiliza outra dica. O teclado do jogo fica suspenso enquanto a janela está aberta. A pontuação é preservada.
+Todas as 156 entradas do catálogo possuem pistas próprias em `hints.js`. As 74 dicas fornecidas pelo autor foram preservadas literalmente; as demais receberam frases contextuais específicas, sem revelar iniciais ou quantidade de letras. O botão **Quero uma dica** abre uma janela sem limite de tempo de leitura. Ao fechar, inclusive com Escape, a dica é apagada da janela e não pode ser reaberta naquela rodada. A próxima palavra disponibiliza outra dica. O teclado do jogo fica suspenso enquanto a janela está aberta. A pontuação é preservada.
 
 ## Contador de visitas
 
@@ -64,7 +64,13 @@ Com Node.js 24 ou mais recente, execute `node --test tests/*.test.mjs`. Os teste
 
 ## Controle de versão
 
-A versão exibida no site fica em `version.js` e segue o formato `vMAJOR.MINOR.PATCH`: o primeiro número indica mudanças estruturais, o segundo indica novos recursos e o terceiro indica correções ou ajustes pequenos. Esta publicação é a **v1.1.0**, referente ao banco ampliado de palavras e à prevenção de repetições. Antes de cada commit, a versão deve ser atualizada e informada na mensagem de trabalho.
+A versão exibida no site fica em `version.js` e segue o formato `vMAJOR.MINOR.PATCH`: o primeiro número indica mudanças estruturais, o segundo indica novos recursos e o terceiro indica correções ou ajustes pequenos. A versão preparada é a **v1.6.1**. Antes de cada commit, a versão deve ser atualizada e informada na mensagem de trabalho.
+
+Na v1.6.1, o sorteio ocorre em duas etapas: uma categoria é escolhida com chances iguais entre as elegíveis menos usadas, e depois uma palavra é sorteada dentro dela. As categorias elegíveis dependem das palavras disponíveis na fase e do histórico; a categoria anterior é evitada quando há alternativas. O tamanho de uma categoria não aumenta sua chance entre as empatadas.
+
+Na v1.6.0, o catálogo contém 19 categorias com pelo menos cinco entradas cada. Foram acrescentadas 29 palavras às categorias menores, Brasil foi retirado do sorteio e o Distrito Federal foi movido para Geografia. Estados contém os 26 estados e Capitais contém as 27 capitais. O jogo continua com cinco palavras por fase e pontuação máxima de 9.000 pontos.
+
+O catálogo do ranking acompanha o do jogo. A validação admite nomes iguais em fases diferentes (por exemplo, São Paulo em Estados e Capitais), mas rejeita repetição dentro da mesma fase. Para publicar esta versão, atualize primeiro o Worker com `npx wrangler@4 deploy --config counter/wrangler.jsonc` e depois envie o frontend ao GitHub. Não é necessária migração de tabelas nem alteração dos resultados já salvos.
 
 ## Autoria
 

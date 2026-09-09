@@ -4,7 +4,6 @@
     "SAMBA",
     "PRAIA",
     "CAFE",
-    "BRASIL",
     "CINEMA",
     "BICICLETA",
     "MUSICA",
@@ -13,7 +12,12 @@
     "FAMILIA",
     "VIAGEM",
     "SORVETE",
-    "JARDIM"
+    "JARDIM",
+    "VOLEI",
+    "BASQUETE",
+    "NATACAO",
+    "TENIS",
+    "ACAMPAMENTO"
   ],
   [
     "CHURRASCO",
@@ -30,7 +34,11 @@
     "CALCADA",
     "REDE",
     "BATE PAPO",
-    "FEIRA"
+    "FEIRA",
+    "TELEJORNAL",
+    "DOCUMENTARIO",
+    "DESENHO ANIMADO",
+    "SERIE"
   ],
   [
     "CAPOEIRA",
@@ -47,7 +55,14 @@
     "ARTESANATO",
     "RODA DE SAMBA",
     "FOLIA",
-    "RAPADURA"
+    "RAPADURA",
+    "REVEILLON",
+    "COCADA",
+    "QUINDIM",
+    "PACOCA",
+    "FORRO",
+    "CHORO",
+    "PAGODE"
   ],
   [
     "JABUTICABA",
@@ -91,7 +106,14 @@
     "SANTA CATARINA",
     "SAO PAULO",
     "SERGIPE",
-    "TOCANTINS"
+    "TOCANTINS",
+    "ABACAXI",
+    "CAJU",
+    "GOIABA",
+    "MANGA",
+    "CURUPIRA",
+    "IARA",
+    "BOITATA"
   ],
   [
     "PARALELEPIPEDO",
@@ -135,6 +157,12 @@
     "FLORIANOPOLIS",
     "SAO PAULO",
     "ARACAJU",
-    "PALMAS"
+    "PALMAS",
+    "INCONFIDENCIA MINEIRA",
+    "TUCANO",
+    "CAPIVARA",
+    "ONCA PINTADA",
+    "CLARICE LISPECTOR",
+    "CECILIA MEIRELES"
   ]
 ]

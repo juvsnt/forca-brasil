@@ -11,8 +11,9 @@ export function validateGame(data) {
   const used = new Set();
   for (const [i, round] of data.rounds.entries()) {
     const level = Math.floor(i / 5);
-    if (!round || !words[level].includes(round.word) || used.has(round.word)) throw new Error('Palavra inválida');
-    used.add(round.word);
+    const key = `${level}:${round?.word}`;
+    if (!round || !words[level].includes(round.word) || used.has(key)) throw new Error('Palavra inválida');
+    used.add(key);
     if (!Array.isArray(round.guesses) || round.guesses.length < 1 || round.guesses.length > 26) throw new Error('Letras inválidas');
     const guesses = new Set();
     let errors = 0, won = false;
