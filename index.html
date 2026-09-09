@@ -68,7 +68,7 @@ function rank(){return GlobalRanking.refresh()}
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function start(name){state={id:crypto.randomUUID(),name,level:0,used:[],wins:0,score:0,lost:false,rounds:[],saved:false};show('game');$('next').textContent='Próxima palavra';newWord()}
 function updateHintButton(){const b=$('hintButton');b.disabled=state.hintUsed||state.roundOver;b.textContent=state.hintUsed?'✓ Dica já utilizada':'✦ Quero uma dica'}
-$('hintButton').onclick=()=>{if(state.hintUsed||state.roundOver||!state.answer)return;state.hintUsed=true;const lettersCount=[...state.answer].filter(c=>c!==' ').length;const initial=state.answer[0];$('hintText').textContent=hints[state.answer]||`Está na categoria ${state.category.toLowerCase()}, começa com “${initial}” e tem ${lettersCount} letras. Pense em uma cena brasileira que combine com essa pista.`;updateHintButton();$('hintDialog').showModal()};
+$('hintButton').onclick=()=>{if(state.hintUsed||state.roundOver||!state.answer)return;state.hintUsed=true;$('hintText').textContent=getHintText(state.answer,state.category);updateHintButton();$('hintDialog').showModal()};
 $('hintDialog').addEventListener('close',()=>{$('hintText').textContent='';const key=[...document.querySelectorAll('.key')].find(b=>!b.disabled);if(key)key.focus()});
 $('retryRanking').onclick=()=>rank();
 $('nameForm').onsubmit=e=>{e.preventDefault();const n=$('name').value.trim();if(n.length<2||n.length>24||/[\u0000-\u001f\u007f<>]/.test(n)){$('nameError').textContent='Use um nome ou apelido de 2 a 24 caracteres, sem sinais < ou >.';return}localStorage.setItem('forcaBrasilName',n);start(n)};$('name').value=localStorage.getItem('forcaBrasilName')||'';
