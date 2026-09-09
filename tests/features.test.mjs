@@ -46,7 +46,7 @@ test('dicas: cobertura, uma leitura por rodada, bloqueio durante modal e cinco n
       assert.equal($('hintButton').disabled,true);
       newWord();
     }
-    assert.equal(state.wins,25);
+    assert.equal(state.wins,25); assert.ok(Object.values(state.categoryCounts).every(count=>count>=0));
     assert.equal(GlobalRanking.games.length,1); assert.equal(GlobalRanking.games[0].rounds.length,25); save(); assert.equal(GlobalRanking.games.length,1);
   `, sandbox);
 });
