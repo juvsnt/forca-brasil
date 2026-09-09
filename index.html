@@ -26,6 +26,8 @@
     .hint-dialog::backdrop{background:#020b08c9;backdrop-filter:blur(5px)}
     .hint-kicker{color:var(--yellow);font-size:.75rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
     .hint-dialog h2{margin:12px 0;font-size:1.6rem}.hint-dialog p{line-height:1.7;margin:0 0 18px}
+    .hint-dialog #hintText{color:var(--yellow);font-style:italic;font-size:1.15rem;font-weight:600}
+    #hintText:not(:empty)::before{content:'“'}#hintText:not(:empty)::after{content:'”'}
     .hint-dialog .hint-reminder{color:var(--muted);font-size:.85rem}.hint-dialog button{width:100%}
     .visitor-badge{display:flex;align-items:center;justify-content:center;gap:12px;width:fit-content;max-width:100%;margin:0 auto 16px;padding:13px 20px;border:1px solid var(--line);border-radius:18px;background:#10271c80;color:var(--ink);font-size:.88rem;line-height:1.6;text-align:left}
     .visitor-icon{display:grid;place-items:center;flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#5edd8214;color:var(--green)}
