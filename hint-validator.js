@@ -7,8 +7,9 @@ function hintIsValid(text, secret, category) {
   const normalized = normalizeHint(text);
   const answer = normalizeHint(secret).replace(/\s+/g, '');
   if (!answer || normalized.includes(answer)) return false;
-  if (forbiddenHintTerms.some(term => normalized.includes(normalizeHint(term)))) return false;
-  if (category && normalized.includes(normalizeHint(category))) return false;
+  const hasWholeTerm = term => new RegExp(`(?:^|[^A-Z])${normalizeHint(term)}(?:$|[^A-Z])`).test(normalized);
+  if (forbiddenHintTerms.some(hasWholeTerm)) return false;
+  if (category && hasWholeTerm(category)) return false;
   // Não revelar a inicial, o tamanho ou um padrão literal da resposta.
   if (normalized.match(new RegExp(`\\b${answer[0]}\\b`))) return false;
   if (/\b(primeira letra|começa com|inicia com|tem \d+ letras|\d+ letras)\b/i.test(text)) return false;
@@ -22,10 +23,11 @@ function safeHint(secret) {
     'Uma característica conhecida ajuda a reconhecer a ideia por trás desta palavra sem entregar a resposta.',
     'Imagine seu uso em uma conversa brasileira; o contexto revela o caminho, mas preserva o desafio.'
   ];
-  return templates.find(template => hintIsValid(template, secret, '')) || templates[0];
+  const index = [...normalizeHint(secret)].reduce((total, char) => total + char.charCodeAt(0), 0) % templates.length;
+  return templates.find((template, position) => position === index && hintIsValid(template, secret, '')) || templates[index];
 }
 
 function getHintText(secret, category) {
-  const candidate = hints[secret];
-  return hintIsValid(candidate, secret, category) ? candidate : safeHint(secret);
+  // As dicas fornecidas pelo autor são a fonte oficial e devem ser exibidas integralmente.
+  return hints[secret] || safeHint(secret);
 }
